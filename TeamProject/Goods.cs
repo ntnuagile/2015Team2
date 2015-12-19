@@ -56,7 +56,10 @@ namespace TeamProject
         }
         public void Remove(Goods good) {
             database_.Remove(good);
-        } 
+        }
+        public void Remove(int idx) {
+            database_.RemoveAt(idx);
+        }
         public Goods Find(string name) {
             foreach( Goods good in database_ ){
                 if( good.name.Equals(name)){
@@ -65,10 +68,17 @@ namespace TeamProject
             }
             throw new ArgumentNullException() ;
         }
+        public Goods this[int idx]{
+            get {
+                return database_[idx];
+            }
+            set {
+                database_[idx] = value;
+            }
+        }
         public void Clear() {
             database_.Clear();
         }
-
 
     // --------------------------------------------------------------   Private
         private List<Goods> database_ = new List<Goods>();
