@@ -36,9 +36,21 @@ namespace TeamProject.Tests
             Assert.That(db.num, Is.EqualTo(0));
 
             Goods good = new Goods();
+            good.SetName("One");
             db.Add(good);
-            Assert.That(db.num, Is.EqualTo(1));
+            
+            try{
+                db.Find("One");
+            }
+            catch (ArgumentNullException) {   // if not find "One"
+                Assert.That(false);
+            }
 
+            Assert.That(db.num, Is.EqualTo(1));
+            db.Remove(db.Find("One"));
+            Assert.That(db.num, Is.EqualTo(0));
+
+            db.Add(good);
             db.Clear();
             Assert.That(db.num, Is.EqualTo(0));
         }
