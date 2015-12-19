@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,7 +44,7 @@ namespace TeamProject
            }
 
           public void SetAccountName(string AccountName) { accountName_ = AccountName; }
-          public void SetSafetyCode(string SafetyCode) { safetycode_ = SafetyCode; }
+          public void SetSafetyCode(string SafetyCode) { safetycode_ = Cypher(SafetyCode); }
           public void SetUserName(string UserName) { userName_ = UserName; }
           public void SetEmail(string Email) { email_ = Email; }
           public void SetId(string Id) { id_ = Id; }
@@ -59,6 +60,17 @@ namespace TeamProject
           private string id_;      //身分證字號
           private string phonenum_;
           private bool isOnline_ = false;
+          private string Cypher(string pt)
+          {
+              MD5 md5Hash = MD5.Create();
+              byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(pt)); // 把明文轉換成byte[]並hash
+              StringBuilder ct = new StringBuilder();
+              for (int i = 0; i < data.Length; i++)
+              {
+                  ct.Append(data[i].ToString("x2")); //把hash過的byte[]轉成16進位表示的string
+              }
 
+              return ct.ToString();
+          }
      }
 }

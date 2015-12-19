@@ -98,7 +98,7 @@ namespace TeamProject.Tests
                m.SetPhoneNum("0912345678");
                m.SetOnlineState(true);
                Assert.That(m.accountname, Is.EqualTo("Idiot"));
-               Assert.That(m.safetycode, Is.EqualTo("1234"));
+               Assert.That(m.safetycode, Is.EqualTo("81dc9bdb52d04dc20036dbd8313ed055"));
                Assert.That(m.username, Is.EqualTo("Amercan Fat"));
                Assert.That(m.email, Is.EqualTo("Idiot@gmai.com"));
                Assert.That(m.id, Is.EqualTo("A123321444"));
