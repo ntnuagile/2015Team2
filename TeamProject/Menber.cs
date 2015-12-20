@@ -51,6 +51,8 @@ namespace TeamProject
           public void SetPhoneNum(string PhoneNum) { phonenum_ = PhoneNum; }
           public void SetOnlineState(bool State) { isOnline_ = State; }
 
+          public void Logout() { isOnline_ = false; }
+
           public List<Goods> buylist = new List<Goods>();
           //  private  
           private string accountName_;
