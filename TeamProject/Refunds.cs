@@ -41,6 +41,22 @@ namespace TeamProject
 
             return s;
         }
+        public string Result(Member m)
+        {
+            if (m == null) throw new ArgumentNullException("Member", "Member 不能是null");
+            string s = "";
+            s += "客戶資訊\n\n";
+            s += string.Format("{0}:{1}\n", "姓名", m.username);
+            s += string.Format("{0}:{1}\n", "鑾絡電話", m.phonenum);
+            string temp = "";
+            for (int i = 0; i < 2; ++i) temp += m.id[i];
+            temp += "****";
+            for (int i = 6; i < m.id.Length; ++i) temp += m.id[i];
+            s += string.Format("{0}:{1}\n", "身分證字號", temp);
+            return Result() +
+                "\n\n" +
+                s;
+        }
 
 
 
