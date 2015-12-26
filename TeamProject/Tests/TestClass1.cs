@@ -141,7 +141,25 @@ namespace TeamProject.Tests
             Assert.That(m.phonenum, Is.EqualTo("0912345678"));
             Assert.That(m.isOnline(), Is.EqualTo(true));
         }
+        [Test]
+        public void TestMemberDatabase()
+        {
+            Member m = new Member();
+            MemberDatabase md = new MemberDatabase();
+            Member temp = null;
 
+            m.SetAccountName("Idiot");
+            m.SetSafetyCode("1234");
+            m.SetUserName("Amercan Fat");
+            m.SetEmail("Idiot@gmai.com");
+            m.SetId("A123321444");
+            m.SetPhoneNum("0912345678");
+            m.SetOnlineState(true);
+
+            md.AddMember(m);
+            Assert.That(md.GetNumberofMembers(), Is.EqualTo(1));
+            Assert.That(md.DeleteMember(m), Is.EqualTo(true));
+        }
 
 
 
