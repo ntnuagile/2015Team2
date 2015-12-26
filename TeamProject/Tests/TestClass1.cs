@@ -146,7 +146,7 @@ namespace TeamProject.Tests
         {
             Member m = new Member();
             MemberDatabase md = new MemberDatabase();
-            Member temp = null;
+            //Member temp = null;
 
             m.SetAccountName("Idiot");
             m.SetSafetyCode("1234");
@@ -157,6 +157,7 @@ namespace TeamProject.Tests
             m.SetOnlineState(true);
 
             md.AddMember(m);
+            //string s = md.GetOneMember(0).username();
             Assert.That(md.GetNumberofMembers(), Is.EqualTo(1));
             Assert.That(md.DeleteMember(m), Is.EqualTo(true));
             Assert.That(md.GetNumberofMembers(), Is.EqualTo(0));
