@@ -69,6 +69,7 @@
     <Compile Include="Goods.cs" />
     <Compile Include="Menber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rank.cs" />
     <Compile Include="Refunds.cs" />
     <Compile Include="shopping cart.cs" />
     <Compile Include="Tests\TestClass1.cs" />
