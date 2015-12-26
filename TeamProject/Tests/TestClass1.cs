@@ -159,6 +159,7 @@ namespace TeamProject.Tests
             md.AddMember(m);
             Assert.That(md.GetNumberofMembers(), Is.EqualTo(1));
             Assert.That(md.DeleteMember(m), Is.EqualTo(true));
+            Assert.That(md.GetNumberofMembers(), Is.EqualTo(0));
         }
 
 
