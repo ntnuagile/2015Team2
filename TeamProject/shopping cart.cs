@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace TeamProject
 {
@@ -10,15 +6,53 @@ namespace TeamProject
     {
         
         List<Goods> want = new List<Goods>();
-        public void Add(Goods g)
+        List<int> ngood = new List<int>();
+        public void Add(Goods g,int num)
         {
-            PriceSum_ += g.price;
-            want.Add(g);
+            bool yes = false;
+            for (int i = 0; i < want.Count;i++ )
+            {
+                if (want[i].name.Equals(g.name))
+                {
+                    yes = true;
+                    if (ngood[i] + num <= g.stock)
+                    {
+                        PriceSum_ += g.price * num;
+                        ngood[i] += num;
+                        //want.Add(g);
+                    }
+                    else return;
+                }
+            }
+            if(!yes)
+            {
+                    if (num <= g.stock)
+                    {
+                        PriceSum_ += g.price * num;
+                        ngood.Add(num);
+                        want.Add(g);
+                    }
+                    else return;
+            }
         }
-        public void delete(Goods g)
+        public void delete(Goods g,int num)
         {
-            PriceSum_ -= g.price ;
-            want.Remove(g);
+            for (int i = 0; i < want.Count; i++)
+            {
+                if (want[i].name.Equals(g.name))
+                {
+                    if (num < ngood[i])
+                    {
+                        ngood[i] -= num;
+                    }
+                    else
+                    {  
+                       ngood.RemoveAt(i);
+                       want.Remove(g);
+                    }
+                    PriceSum_ -= g.price * num;
+                }
+            } 
         }
         public void deleteAll()
         {
@@ -31,13 +65,13 @@ namespace TeamProject
             s += "購物車\n" +
                  "\n";
             int count = 1;
-            s += string.Format("{0}\t:{1}\t:{2}\tx\t{3}\t=\t{4}\n", "項次", "品名", "價格", "金額");
-            foreach (Goods g in want)
+            s += string.Format("{0}\t{1}\t{2}\tx\t{3}\t=\t{4}\n", "項次", "品名", "價格","數量", "金額");
+            for (int i = 0; i < want.Count; i++)
             {   
-                int m = g.price * g.stock;
-                s += string.Format("{0}\t:{1}\t:{2}\tx\t{3}\t=\t{4}\n", count, g.name, g.price, m);
-                ++count;
+                int m = want[i].price * ngood[i];
+                s += string.Format("{0}\t{1}\t{2}\tx\t{3}\t=\t{4}\n", i, want[i].name, want[i].price, ngood[i], m);
             }
+            s += string.Format("{0}\t:{1}", "總金額", PriceSum_);
         }
         private int PriceSum_ = 0;
     }
