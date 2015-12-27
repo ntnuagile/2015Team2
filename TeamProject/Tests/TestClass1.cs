@@ -162,7 +162,34 @@ namespace TeamProject.Tests
             Assert.That(md.DeleteMember(m), Is.EqualTo(true));
             Assert.That(md.GetNumberofMembers(), Is.EqualTo(0));
         }
-
+        [Test]
+        public void TestShoppingCart()
+        {
+            shopping_cart s = new shopping_cart();
+            Goods g1=new Goods();
+            g1.SetName("Apple");
+            g1.SetPrice(30);
+            g1.SetStock(100);
+            s.Add(g1,2);
+            s.Add(g1,3);
+            Goods g2 = new Goods();
+            g2.SetName("Hat");
+            g2.SetPrice(50);
+            g2.SetStock(50);
+            s.Add(g2, 20);
+            s.delete(g2, 10);
+            Goods g3 = new Goods();
+            g3.SetName("Flower");
+            g3.SetPrice(50);
+            g3.SetStock(50);
+            s.Add(g3, 20);
+            s.delete(g3, 20);
+            Assert.That(s.Result(), Is.EqualTo("購物車\n" + "\n" +
+            "項次	品名	價格	x	數量	=	金額\n" +
+            "1	Apple	30	x	5	=	150\n" +
+            "2	Hat	50	x	10	=	500\n" + "\n" +
+            "總金額	:	650"));
+        }
 
 
 
