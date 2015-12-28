@@ -83,7 +83,7 @@ namespace TeamProject
         private string id_;      // 身分證字號
         private string phonenum_;
         private bool isOnline_ = false;
-        private string Cypher(string pt)
+        public static string Cypher(string pt)
         {
             MD5 md5Hash = MD5.Create();
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(pt)); // 把明文轉換成byte[]並hash

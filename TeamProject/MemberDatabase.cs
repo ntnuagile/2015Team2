@@ -57,7 +57,7 @@ namespace TeamProject
                 if (String.Compare(account, GetOneMember(i).accountname) == 0)
                 {
                     found = true;
-                    if (String.Compare(password, GetOneMember(i).safetycode) == 0)
+                    if (String.Compare(Member.Cypher(password), GetOneMember(i).safetycode) == 0)
                     {
                         Random crandom = new Random();
                         int tmpinput = crandom.Next(),input;
