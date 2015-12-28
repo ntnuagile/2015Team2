@@ -139,7 +139,7 @@ namespace TeamProject.Tests
             Assert.That(m.email, Is.EqualTo("Idiot@gmai.com"));
             Assert.That(m.id, Is.EqualTo("A123321444"));
             Assert.That(m.phonenum, Is.EqualTo("0912345678"));
-            Assert.That(m.isOnline(), Is.EqualTo(true));
+            Assert.That(m.isOnline, Is.EqualTo(true));
         }
         [Test]
         public void TestMemberDatabase()

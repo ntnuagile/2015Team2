@@ -43,7 +43,7 @@ namespace TeamProject
         /// </summary>
         public string id { get { return id_; } }
         public string phonenum { get { return phonenum_; } }
-        public bool isOnline() { return isOnline_; }
+        public bool isOnline { get { return isOnline_; } }
 
         public void Clear()
         {
