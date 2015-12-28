@@ -145,9 +145,9 @@ namespace TeamProject.Tests
         public void TestMemberDatabase()
         {
             Member m = new Member();
+            Member n = new Member();
             MemberDatabase md = new MemberDatabase();
-            //Member temp = null;
-
+            
             m.SetAccountName("Idiot");
             m.SetSafetyCode("1234");
             m.SetUserName("Amercan Fat");
@@ -156,11 +156,24 @@ namespace TeamProject.Tests
             m.SetPhoneNum("0912345678");
             m.SetOnlineState(true);
 
+            n.SetAccountName("zzzz");
+            n.SetSafetyCode("7890");
+            n.SetUserName("hahaha");
+            n.SetEmail("hahaha@gmail.com");
+            n.SetId("G12345678");
+            n.SetPhoneNum("0806449449");
+            n.SetOnlineState(false);
+
             md.AddMember(m);
-            //string s = md.GetOneMember(0).username();
             Assert.That(md.GetNumberofMembers(), Is.EqualTo(1));
             Assert.That(md.DeleteMember(m), Is.EqualTo(true));
             Assert.That(md.GetNumberofMembers(), Is.EqualTo(0));
+            md.AddMember(m);
+            Assert.That(md.GetOneMember(0).accountname, Is.EqualTo("Idiot"));
+            Assert.That(md.GetOneMember(m).email, Is.EqualTo("Idiot@gmai.com"));
+            md.AddMember(n);
+            Assert.That(md.GetNumberofMembers(), Is.EqualTo(2));
+            Assert.That(md.GetOneMember(1).isOnline, Is.EqualTo(false));
         }
         [Test]
         public void TestShoppingCart()
