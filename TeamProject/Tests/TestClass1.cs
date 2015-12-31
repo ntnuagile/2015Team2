@@ -77,6 +77,7 @@ namespace TeamProject.Tests
             Goods[] g = new Goods[] {
                 AGood("good1",100,1),
                 AGood("good2",50,2) };
+            Assert.Catch<Exception>(() => r.Result());
             r.Add(g);
             Assert.That(r.Result(), Is.EqualTo("退費明細\n" + "\n" +
             "項次	:品名	:價格	x	數量	=	金額\n" +
@@ -103,8 +104,7 @@ namespace TeamProject.Tests
             m.SetEmail("Idiot@gmai.com");
             m.SetId("A123321444");
             m.SetPhoneNum("0912345678");
-
-            Assert.That(r.Result(m), Is.EqualTo("退費明細\n" + "\n" +
+            string list = "退費明細\n" + "\n" +
             "項次	:品名	:價格	x	數量	=	金額\n" +
             "1	:good1	:100	x	1	=	100\n" +
             "2	:good2	:50	x	2	=	100\n" + "\n" +
@@ -112,8 +112,10 @@ namespace TeamProject.Tests
             "客戶資訊\n\n" +
             "姓名:Amercan Fat\n" +
             "鑾絡電話:0912345678\n" +
-            "身分證字號:A1****1444\n"));
-
+            "身分證字號:A1****1444\n";
+            Assert.That(r.Result(m), Is.EqualTo(list));
+            Assert.Catch<Exception>(() => r.Result("0000", m));
+            Assert.That(r.Result("1234",m), Is.EqualTo(list));
 
         }
 

@@ -23,6 +23,7 @@ namespace TeamProject
 
         public string Result()
         {
+            if (gdb.Count == 0) throw new Exception("沒東西啊!");
             int money = 0;
             string s = "";
             s += "退費明細\n" +
@@ -58,7 +59,12 @@ namespace TeamProject
                 s;
         }
 
-
+        public string Result(string Key,Member m)
+        {
+            if (m.safetycode != Member.Cypher(Key))
+                throw new Exception("身分驗證失敗!");
+            return Result(m);
+        }
 
 
     }
