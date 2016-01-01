@@ -206,6 +206,40 @@ namespace TeamProject.Tests
             "總金額	:	650"));
         }
 
+        
+        [Test]
+        public void TestRank()
+        {
+            Rank r = new Rank();
+            Goods[] goodsarr = new Goods[3];
+            for (int i = 0; i < 3; ++i) goodsarr[i] = new Goods();
+            goodsarr[0].SetName("Apple");
+            goodsarr[0].SetPrice(10);
+            goodsarr[1].SetName("Ball");
+            goodsarr[1].SetPrice(20);
+            goodsarr[2].SetName("cup");
+            goodsarr[2].SetPrice(30);
+            Assert.That(r.SortbyPrice(goodsarr,3), Is.EqualTo(goodsarr));
+
+        }
+        
+
+        [Test]
+        public void TestSearch()
+        {
+            GoodsDB b = new GoodsDB();
+            Search s = new Search();
+            Goods g = new Goods();
+            string name = "One";
+            g.SetName("One");
+            g.SetPrice(10);
+            b.Add(g);
+            Assert.That(s.SearchGoods(name, b), Is.EqualTo(name));
+
+        }
+
+
+
 
 
 

@@ -8,29 +8,28 @@ namespace TeamProject
 {
     class Rank
     {
-       
-        public void SortbyPrice(GoodsDB db)
+
+        public Goods[] SortbyPrice(Goods[] goodsarr, int count)
         {
-            int[] array = new int[db.num];
-            /*for (int i = 0; i < db.num; i++)
-            { 
-                
-            }
-            */
-            Array.Sort(array);
-                    
-        }
-        public void SortbyName(GoodsDB db, string name)
-        {
-            int num = db.num;
-            while (true)
+            for (int i = 0; i < count; i++)
             {
-                if (num == 0) break;
-                Goods findgoods = db.Find(name);
-                Console.WriteLine(findgoods.name, findgoods.price, findgoods.detail);
-                num--;
-            };
-           
+                for (int j = 0; j < count - i - 1; j++)
+                {
+                    if (goodsarr[j + 1].price < goodsarr[j].price)
+                    {
+                        Goods temp = goodsarr[j];
+                        goodsarr[j] = goodsarr[j + 1];
+                        goodsarr[j + 1] = goodsarr[j];
+
+                    }
+                }
+                Console.WriteLine(goodsarr[i].name, goodsarr[i].price);
+
+            }
+
+            return goodsarr; 
         }
+       
+
     }
 }
