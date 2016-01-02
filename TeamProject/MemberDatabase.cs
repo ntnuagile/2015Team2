@@ -52,13 +52,8 @@ namespace TeamProject
             if (index >= members.Count() || index < 0) return null;
             return members[index];
         }
-        public bool Login()
+        public bool Login(string account,string password)
         {
-            string account, password;
-            System.Console.WriteLine("Please input your ID number\n");
-            account = System.Console.ReadLine();
-            System.Console.WriteLine("Please input your password\n");
-            password = System.Console.ReadLine();
             bool found = false;
             for (int i = 0; i < GetNumberofMembers(); i++)
             {
@@ -67,30 +62,11 @@ namespace TeamProject
                     found = true;
                     if (String.Compare(Member.Cypher(password), GetOneMember(i).safetycode) == 0)
                     {
-                        Random crandom = new Random();
-                        int tmpinput = crandom.Next(),input;
-                        System.Console.WriteLine("Please input the following word\n");
-                        System.Console.WriteLine(tmpinput);
-                        input = System.Console.Read();
-                        if (input == tmpinput)
-                        {
-                            GetOneMember(i).SetOnlineState(true);
-                            return true;
-                        }
-                        else
-                        { System.Console.WriteLine("Wrong word\n"); }
-                    }
-                    else
-                    {
-                        System.Console.WriteLine("Wrong password\n");
+                        GetOneMember(i).SetOnlineState(true);
+                        return true;
                     }
                 }
             }
-            if (!found)
-            {
-                System.Console.WriteLine("This account does not exist\n");
-            }
-
             return false;
         }
 

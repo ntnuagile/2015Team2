@@ -281,7 +281,24 @@ namespace TeamProject.Tests
             Assert.That(s.SearchGoods(name, b), Is.EqualTo(name));
 
         }
-
+        [Test]
+        public void TestLoginLogout()
+        {
+            MemberDatabase md = new MemberDatabase();
+            Member m = new Member();
+            Member n = new Member();
+            m.SetAccountName("Peter");
+            m.SetSafetyCode("0000");
+            m.SetAccountName("Allen");
+            m.SetSafetyCode("1111");
+            md.AddMember(m);
+            md.AddMember(n);
+            Assert.That(md.Login("Peter", "0000"), Is.EqualTo(true));
+            Assert.That(md.Login("Peter", "1234"), Is.EqualTo(false));
+            Assert.That(md.Login("John", "1234"), Is.EqualTo(false));
+            Assert.That(m.Logout(), Is.EqualTo(true));
+            Assert.That(n.Logout(), Is.EqualTo(false));
+        }
 
 
 
