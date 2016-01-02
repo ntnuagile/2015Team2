@@ -201,6 +201,11 @@ namespace TeamProject.Tests
             a.SetOnlineState(true);
             Assert.That(md.GetOneMember(a), Is.EqualTo(null));
             Assert.That(md.AddMember(a), Is.EqualTo(true));
+            Assert.That(md.GetOneMember(-2), Is.EqualTo(null));
+            Assert.That(md.GetNumberofMembers(), Is.EqualTo(3));
+            Assert.That(md.GetOneMember(3), Is.EqualTo(null));
+            Assert.That(md.GetOneMember(same), Is.EqualTo(null));
+            // in the md : m,n,a
         }
         [Test]
         public void TestShoppingCart()
