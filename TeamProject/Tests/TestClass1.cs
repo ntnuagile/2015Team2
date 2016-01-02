@@ -289,8 +289,8 @@ namespace TeamProject.Tests
             Member n = new Member();
             m.SetAccountName("Peter");
             m.SetSafetyCode("0000");
-            m.SetAccountName("Allen");
-            m.SetSafetyCode("1111");
+            n.SetAccountName("Allen");
+            n.SetSafetyCode("1111");
             md.AddMember(m);
             md.AddMember(n);
             Assert.That(md.Login("Peter", "0000"), Is.EqualTo(true));

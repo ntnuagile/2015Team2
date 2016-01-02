@@ -73,7 +73,10 @@ namespace TeamProject
             }
             return false;
         }
-
+        public void Login()
+        {
+                isOnline_ = true;
+        }
         public List<Goods> buylist = new List<Goods>();
         //  private  
         private string accountName_;

@@ -54,15 +54,14 @@ namespace TeamProject
         }
         public bool Login(string account,string password)
         {
-            bool found = false;
+
             for (int i = 0; i < GetNumberofMembers(); i++)
             {
                 if (String.Compare(account, GetOneMember(i).accountname) == 0)
-                {
-                    found = true;
+                {  
                     if (String.Compare(Member.Cypher(password), GetOneMember(i).safetycode) == 0)
                     {
-                        GetOneMember(i).SetOnlineState(true);
+                        GetOneMember(i).Login();
                         return true;
                     }
                 }
