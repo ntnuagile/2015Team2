@@ -165,17 +165,42 @@ namespace TeamProject.Tests
             n.SetId("G12345678");
             n.SetPhoneNum("0806449449");
             n.SetOnlineState(false);
-
-            md.AddMember(m);
+            // test add a member
+            Assert.That(md.AddMember(m), Is.EqualTo(true));
             Assert.That(md.GetNumberofMembers(), Is.EqualTo(1));
+            // test delete a member
             Assert.That(md.DeleteMember(m), Is.EqualTo(true));
             Assert.That(md.GetNumberofMembers(), Is.EqualTo(0));
-            md.AddMember(m);
+            Assert.That(md.DeleteMember(m), Is.EqualTo(false));
+            // test get something from a member
+            Assert.That(md.AddMember(m), Is.EqualTo(true));
             Assert.That(md.GetOneMember(0).accountname, Is.EqualTo("Idiot"));
             Assert.That(md.GetOneMember(m).email, Is.EqualTo("Idiot@gmai.com"));
-            md.AddMember(n);
+            // test add another member
+            Assert.That(md.AddMember(n), Is.EqualTo(true));
             Assert.That(md.GetNumberofMembers(), Is.EqualTo(2));
             Assert.That(md.GetOneMember(1).isOnline, Is.EqualTo(false));
+            // test can add the same account
+            Member same = new Member();
+            same.SetAccountName("Idiot");
+            same.SetSafetyCode("9999");
+            same.SetUserName("aluba");
+            same.SetEmail("balan@gmai.com");
+            same.SetId("A12344444");
+            same.SetPhoneNum("222222");
+            same.SetOnlineState(true);
+            Assert.That(md.AddMember(same), Is.EqualTo(false));
+            // test get a member
+            Member a = new Member();
+            a.SetAccountName("QQ");
+            a.SetSafetyCode("9999");
+            a.SetUserName("aluba");
+            a.SetEmail("balan@gmai.com");
+            a.SetId("A12344444");
+            a.SetPhoneNum("222222");
+            a.SetOnlineState(true);
+            Assert.That(md.GetOneMember(a), Is.EqualTo(null));
+            Assert.That(md.AddMember(a), Is.EqualTo(true));
         }
         [Test]
         public void TestShoppingCart()

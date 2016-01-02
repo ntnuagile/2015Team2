@@ -10,13 +10,21 @@ namespace TeamProject
     {
         private List<Member> members = new List<Member>();
 
-        public void AddMember(Member m)
+        public bool AddMember(Member m)
         {
+            for(int i = 0; i < members.Count; i = i + 1)
+            {
+                if (string.Compare(members[i].accountname,m.accountname)==0 )
+                {
+                    return false;
+                }
+            }
             members.Add(m);
+            return true;
         }
         public bool DeleteMember(Member m)
         {
-            if (!members.Contains(m))
+            if (!members.Contains(m) || members.Count==0 )
             {
                 return false;
             }
