@@ -38,20 +38,34 @@ namespace TeamProject.Tests
             Goods good = new Goods();
             good.SetName("One");
             db.Add(good);
+            good = new Goods();
+            good.SetName("Two");
+            db.Add(good);
             Assert.That(db[0].name, Is.EqualTo("One"));
+            Assert.That(db.num, Is.EqualTo(2));
 
-            try
-            {
+            try {
                 db.Find("One");
             }
-            catch (ArgumentNullException)
-            {   // if not find "One"
+            catch (ArgumentNullException) {   // if not find "One"
+                Assert.That(false);
+            }
+            try {
+                db.Find("Three");
+            }
+            catch (ArgumentNullException){   // if not find "Three"
+                Assert.That(true);
+            }
+            catch {
                 Assert.That(false);
             }
 
-
-            Assert.That(db.num, Is.EqualTo(1));
+            
             db.Remove(db.Find("One"));
+            Assert.That(db.num, Is.EqualTo(1));
+            Assert.That(db[0].name, Is.EqualTo("Two"));
+
+            db.Remove(0);
             Assert.That(db.num, Is.EqualTo(0));
 
             db.Add(good);
