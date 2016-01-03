@@ -5,8 +5,8 @@ namespace TeamProject
     class shopping_cart
     {
         
-        List<Goods> want = new List<Goods>();
-        List<int> ngood = new List<int>();
+        private List<Goods> want = new List<Goods>();
+        private List<int> ngood = new List<int>();
         public void Add(Goods g,int num)
         {
             bool yes = false;

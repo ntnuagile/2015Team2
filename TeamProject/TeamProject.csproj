@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Goods.cs" />
+    <Compile Include="Logistic.cs" />
     <Compile Include="MemberDatabase.cs" />
     <Compile Include="Menber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

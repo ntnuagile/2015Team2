@@ -303,12 +303,11 @@ namespace TeamProject.Tests
             Assert.That(m.Logout(), Is.EqualTo(true));
             Assert.That(n.Logout(), Is.EqualTo(false));
         }
-
-
-
-
-
-
-
+        [Test]
+        public void Logistic()
+        {
+            Logistic l = new Logistic();
+            Assert.That(l.Result(), Is.EqualTo("Logistic" + "\n" + "\n" + "option1" + "\t" + "Cash on delivery" + "\t" + "\n" + "option2" + "\t" + "credit card" + "\t" + "\n"));
+        }
     }
 }
