@@ -43,6 +43,7 @@ namespace TeamProject.Tests
             db.Add(good);
             Assert.That(db[0].name, Is.EqualTo("One"));
             Assert.That(db.num, Is.EqualTo(2));
+            db[1] = db[1];
 
             try {
                 db.Find("One");
