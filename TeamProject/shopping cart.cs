@@ -57,6 +57,8 @@ namespace TeamProject
         public void deleteAll()
         {
             want.Clear();
+            ngood.Clear();
+            PriceSum_ = 0;
         }
         public int PriceSum { get { return PriceSum_; } }
         public string Result()

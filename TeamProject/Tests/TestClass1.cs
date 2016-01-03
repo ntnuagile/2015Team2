@@ -231,6 +231,7 @@ namespace TeamProject.Tests
             g1.SetStock(100);
             s.Add(g1,2);
             s.Add(g1,3);
+            s.Add(g1, 100);
             Goods g2 = new Goods();
             g2.SetName("Hat");
             g2.SetPrice(50);
@@ -248,6 +249,9 @@ namespace TeamProject.Tests
             "1	Apple	30	x	5	=	150\n" +
             "2	Hat	50	x	10	=	500\n" + "\n" +
             "總金額	:	650"));
+            Assert.That(s.PriceSum, Is.EqualTo(650));
+            s.deleteAll();
+            Assert.That(s.PriceSum, Is.EqualTo(0));
         }
 
         
