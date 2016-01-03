@@ -242,6 +242,7 @@ namespace TeamProject.Tests
             g3.SetName("Flower");
             g3.SetPrice(50);
             g3.SetStock(50);
+            s.Add(g3, 60);
             s.Add(g3, 20);
             s.delete(g3, 20);
             Assert.That(s.Result(), Is.EqualTo("購物車\n" + "\n" +
