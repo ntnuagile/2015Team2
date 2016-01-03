@@ -52,7 +52,14 @@ namespace TeamProject
 
         public int num { get { return database_.Count; } }
         public void Add( Goods good) {
-            database_.Add(good) ;
+            int index;
+            index = FindIndex(good.name);
+            if(index==-1)
+                database_.Add(good) ;
+            else
+            {
+                database_[index].SetStock(database_[index].stock+good.stock);
+            }
         }
         public void Remove(Goods good) {
             database_.Remove(good);
@@ -68,6 +75,17 @@ namespace TeamProject
             }
             throw new ArgumentNullException() ;
         }
+        public int FindIndex(string name)
+        {
+            for (int i=0;i<num; i+=1)
+            {
+                if (database_[i].name.Equals(name))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
         public Goods this[int idx]{
             get {
                 return database_[idx];
@@ -79,10 +97,25 @@ namespace TeamProject
         public void Clear() {
             database_.Clear();
         }
+        public bool SellGoods(String name,int number)
+        {
+            int index = FindIndex(name);
+            if (index != -1 && number <= database_[index].stock)
+            {
+                database_[index].SetStock(database_[index].stock - number);
+                return true;
+            }
+            return false;
+            
+        }
 
     // --------------------------------------------------------------   Private
         private List<Goods> database_ = new List<Goods>();
     }
+
+    
+        
+    
 
 
 }

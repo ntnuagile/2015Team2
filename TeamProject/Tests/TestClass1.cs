@@ -61,6 +61,13 @@ namespace TeamProject.Tests
                 Assert.That(false);
             }
 
+            good = new Goods();
+            good.SetName("One");
+            good.SetStock(3);
+            db.Add(good);
+            Assert.That(db[0].stock, Is.EqualTo(3));
+            db.SellGoods("One", 2);
+            Assert.That(db[0].stock, Is.EqualTo(1));
             
             db.Remove(db.Find("One"));
             Assert.That(db.num, Is.EqualTo(1));
